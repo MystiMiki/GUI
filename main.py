@@ -2,6 +2,8 @@ import pygame
 import Bird as B
 import Load_pic as L
 import Pipe as P
+import sys
+import os
 
 def text(data, font_size, position, screen, screen_w, screen_h):
     font = pygame.font.Font('font.ttf', font_size)
@@ -10,7 +12,8 @@ def text(data, font_size, position, screen, screen_w, screen_h):
     text_height = text.get_height()
     screen.blit(text, (screen_w // 2 - text_width // 2, screen_h // position - text_height // 2))
 
-def get_score(score, screen_w, screen_h, bird, pipes):
+
+def get_score(score, screen_w, bird, pipes):
     font_size = 40
     font = pygame.font.Font('font.ttf', font_size)
     score_text = font.render("{0}".format(score), True, (0, 0, 0))
@@ -23,12 +26,16 @@ def get_score(score, screen_w, screen_h, bird, pipes):
 
 if __name__ == '__main__':
 
-    #bird = B.Bird('bird_1.png', 'bird_1_sit.png')
-    #pipes = P.Pipe('pipe.png')
+    # bird = B.Bird('bird_1.png', 'bird_1_sit.png')
+    # pipes = P.Pipe('pipe.png')
+
+    bird = None
+    pipes = None
+    frames = None
+    score = None
 
     pygame.init()
     pygame.display.set_caption('Flappy')
-
 
     pygame.display.set_icon(pygame.image.load('bird_1.png'))
 
@@ -46,7 +53,8 @@ if __name__ == '__main__':
                 running = False
             elif event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:  # escape up
                 running = False
-            elif event.type == pygame.KEYDOWN and (event.key == pygame.K_SPACE or event.key == pygame.K_UP) and not pipes.collision:
+            elif event.type == pygame.KEYDOWN and (
+                    event.key == pygame.K_SPACE or event.key == pygame.K_UP) and not pipes.collision:
                 jump_count += 1
                 bird_flapped = True
                 start = False
@@ -70,8 +78,7 @@ if __name__ == '__main__':
             pipes.generate(screen_w, screen_h)
             pipes.display_collision(screen, bird)
 
-            if not bird.land:
-                frames = bird.movement(bird_flapped, jump_count, screen_h, frames)
+            frames = bird.movement(bird_flapped, jump_count, screen_h, frames)
 
             pipes.movement(bird.land)
 
@@ -81,13 +88,10 @@ if __name__ == '__main__':
             if bird.land:
                 text("PRESS R TO RESTART", 30, 2, screen, screen_w, screen_h)
 
-            score = get_score(score, screen_w, screen_h, bird, pipes)
+            score = get_score(score, screen_w, bird, pipes)
 
         screen.blit(bird.active, (bird.x, bird.y))
         jump_count = 0
         pygame.display.flip()
         clock.tick(60)
         frames += 1
-
-
-

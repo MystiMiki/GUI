@@ -4,7 +4,7 @@ rescale = 1.5
 
 
 class Bird:
-    def __init__(self, fly, sit, move=1, flap_velocity=30):
+    def __init__(self, fly, sit, flap_velocity=2):
         self.fly, self.width, self.height = L.load_pic(fly, rescale)
         self.sit, _, _ = L.load_pic(sit, rescale)
 
@@ -14,10 +14,10 @@ class Bird:
         self.x = None
         self.y = None
 
-        self.gravitation = 1
-        self.move = -move
+        self.gravitation = -1/20
         self.flap_velocity = -flap_velocity
         self.flapped = False
+        self.vert_speed = 0
 
     def set_x(self, screen_w):
         self.x = screen_w // 2 - self.width // 2
@@ -26,16 +26,18 @@ class Bird:
         self.y = screen_h // 2 - self.height // 2
 
     def movement(self, bird_flapped, jump_count, screen_h, frames):
-        if bird_flapped and (x := (self.y + jump_count * self.flap_velocity)) > 0:
-            self.y = x
-            frames = 0
-        elif self.y <= (screen_h - self.height):
-            #self.y += 1
-            self.y += 1/10 * self.gravitation * frames
-        if self.y >= (screen_h - self.height):
-            self.y = screen_h - self.height
-            self.active = self.sit
-            self.land = True
+        if not self.land:
+            if bird_flapped and self.y + jump_count * self.flap_velocity > 0: #začátek skoku
+                self.vert_speed = self.flap_velocity
+                frames = 0
+            if self.y <= (screen_h - self.height):
+                self.y += self.vert_speed * frames / 70
+                self.vert_speed -= self.gravitation * frames / 70
+            if self.y >= (screen_h - self.height): #přistání
+                self.y = screen_h - self.height
+                self.active = self.sit
+                self.land = True
+
         return frames
 
 

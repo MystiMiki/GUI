@@ -1,9 +1,22 @@
-# GUI
-## Flappy Bird
+# Flappy Bird
+Vytvoření hry **Flappy bird** knihovně *pygame*
 
-Přiložila jsem i potřebné obrázky pro plnou funkčnost a vyzkoušení. 
+### Co budeme probírat:
 
-Pohyb ptáčka je ve třídě Bird.py v metodě movement(...).
+- [Vytvoření okna]()
+- [Pozicování]()
+  - [Ptáček]()
+  - [Trubky]()
+- [Kolize]()
+- [Skóre]()
+- [Restart]()
 
 
+
+
+### Vytvoření **.exe** 
+Pomocí knihovny *pyinstaller*
+```
 pyinstaller --onefile --noconsole main.py
+```
+

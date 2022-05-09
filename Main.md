@@ -16,6 +16,7 @@ V tomto kroku spojíme vše, co jsme si vytvořili.
     pygame.init()
     ```
 2. V tomto kroku vezmeme, co jsme si v úvodu vytvořili 
+
     I. Nastavení titulku a ikony <br>II. Cyklus pro hru s eventy
 
 3. Upravení eventů

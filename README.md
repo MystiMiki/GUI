@@ -10,7 +10,7 @@ Vytvoření hry **Flappy bird** knihovně *pygame*
 - [Kolize](https://github.com/MystiMiki/GUI/blob/main/Collision.md)
 - [Skóre](https://github.com/MystiMiki/GUI/blob/main/Score.md)
 - [Main](https://github.com/MystiMiki/GUI/blob/main/Main.md)
-- [Restart]()
+- [Restart](https://github.com/MystiMiki/GUI/blob/main/Restart.md)
 
 
 

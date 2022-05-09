@@ -3,7 +3,7 @@ Vytvoření hry **Flappy bird** knihovně *pygame*
 
 ### Co budeme probírat:
 
-- [Vytvoření okna]()
+- [Tvorba a úprava okna](https://github.com/MystiMiki/GUI/blob/main/Window.md)
 - [Pozicování]()
   - [Ptáček]()
   - [Trubky]()

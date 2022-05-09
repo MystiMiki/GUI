@@ -5,7 +5,7 @@
    Co vše potřebujeme?
    
    Z classy *bird.py* víme, že budeme opět načítat obrázek trubky. Trubku máme ze zhora i spoda. Lze použít pouze jeden obrázek, 
-   který bude upravený pomocí nějaké metody v pygame?
+   který bude otočený pomocí nějaké metody v pygame?
    
    <details>
    <summary>Pipe.py</summary>

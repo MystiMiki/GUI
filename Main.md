@@ -172,8 +172,6 @@ if __name__ == '__main__':
                 jump_count += 1
                 bird_flapped = True
                 start = False
-            elif event.type == pygame.KEYUP and event.key == pygame.K_r and bird.land:
-                start = True
 
         background, screen_w, screen_h = L.load_pic('bg_1.png')
         screen = pygame.display.set_mode((screen_w, screen_h))

@@ -42,17 +42,18 @@
 
    ```python
    def movement(self, bird_flapped, jump_count, screen_h, frames):
-     if bird_flapped and self.y + jump_count * self.flap_velocity > 0: #začátek skoku
-         self.vert_speed = self.flap_velocity
-         frames = 0
-     if self.y <= (screen_h - self.height):
-         self.y += self.vert_speed * frames / 70
-         self.vert_speed -= self.gravitation * frames / 70
-     if self.y >= (screen_h - self.height): #přistání
-         self.y = screen_h - self.height
-         self.active = self.sit
-         self.land = True
+       if not self.land:
+           if bird_flapped and self.y + jump_count * self.flap_velocity > 0: #začátek skoku
+               self.vert_speed = self.flap_velocity
+               frames = 0
+           if self.y <= (screen_h - self.height):
+               self.y += self.vert_speed * frames / 70
+               self.vert_speed -= self.gravitation * frames / 70
+           if self.y >= (screen_h - self.height): #přistání
+               self.y = screen_h - self.height
+               self.active = self.sit
+               self.land = True
 
-     return frames
+       return frames
    ```
    </details>  

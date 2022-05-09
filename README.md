@@ -8,7 +8,7 @@ Vytvoření hry **Flappy bird** knihovně *pygame*
   - [Ptáček](https://github.com/MystiMiki/GUI/blob/main/Bird.md)
   - [Trubky](https://github.com/MystiMiki/GUI/blob/main/Pipe.md)
 - [Kolize](https://github.com/MystiMiki/GUI/blob/main/Collision.md)
-- [Skóre]()
+- [Skóre](https://github.com/MystiMiki/GUI/blob/main/Score.md)
 - [Restart]()
 
 

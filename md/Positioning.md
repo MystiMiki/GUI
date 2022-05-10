@@ -1,7 +1,7 @@
 ## Pozicování
 Vše se pozicuje od levého horního rohu viz obrázek.
 
-<img src="https://github.com/MystiMiki/GUI/blob/side/position.png" alt="drawing" width="500"/>
+<img src="https://github.com/MystiMiki/GUI/blob/main/md/position.png" alt="drawing" width="500"/>
 
 *Pokud chceme umístit obrázek doprostřed okna, jaké bude mít souřadnice?*
 <br></br>

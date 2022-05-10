@@ -141,9 +141,6 @@ def get_score(score, screen_w, bird, pipes):
 
 if __name__ == '__main__':
 
-    # bird = B.Bird('bird_1.png', 'bird_1_sit.png')
-    # pipes = P.Pipe('pipe.png')
-
     bird = None
     pipes = None
     frames = None
@@ -164,9 +161,9 @@ if __name__ == '__main__':
         bird_flapped = False
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:  # křížek
+            if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:  # escape up
+            elif event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE: 
                 running = False
             elif event.type == pygame.KEYDOWN and (
                     event.key == pygame.K_SPACE or event.key == pygame.K_UP) and not pipes.collision:

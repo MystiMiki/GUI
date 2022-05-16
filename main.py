@@ -5,12 +5,13 @@ import Pipe as P
 import sys
 import os
 
-def text(data, font_size, position, screen, screen_w, screen_h):
+
+def text(data, font_size, position, screen):
     font = pygame.font.Font('font.ttf', font_size)
     text = font.render(data, True, (0, 0, 0))
     text_width = text.get_width()
     text_height = text.get_height()
-    screen.blit(text, (screen_w // 2 - text_width // 2, screen_h // position - text_height // 2))
+    screen.blit(text, (screen.get_width() // 2 - text_width // 2, screen.get_height() // position - text_height // 2))
 
 
 def get_score(score, screen_w, bird, pipes):
@@ -26,9 +27,6 @@ def get_score(score, screen_w, bird, pipes):
 
 if __name__ == '__main__':
 
-    # bird = B.Bird('bird_1.png', 'bird_1_sit.png')
-    # pipes = P.Pipe('pipe.png')
-
     bird = None
     pipes = None
     frames = None
@@ -38,6 +36,11 @@ if __name__ == '__main__':
     pygame.display.set_caption('Flappy')
 
     pygame.display.set_icon(pygame.image.load('bird_1.png'))
+
+    background = L.load_pic('bg_1.png')
+    screen_w = background.get_width()
+    screen_h = background.get_height()
+    screen = pygame.display.set_mode((screen_w, screen_h))
 
     running = True
     start = True
@@ -55,43 +58,39 @@ if __name__ == '__main__':
                 running = False
             elif event.type == pygame.KEYDOWN and (
                     event.key == pygame.K_SPACE or event.key == pygame.K_UP) and not pipes.collision:
-                jump_count += 1
                 bird_flapped = True
                 start = False
             elif event.type == pygame.KEYUP and event.key == pygame.K_r and bird.land:
                 start = True
 
-        background, screen_w, screen_h = L.load_pic('bg_1.png')
-        screen = pygame.display.set_mode((screen_w, screen_h))
         screen.blit(background, (0, 0))
 
         if start:
             score = 0
             frames = 1
-            bird = B.Bird('bird_1.png', 'bird_1_sit.png')
+            bird = B.Bird(screen, 'bird_1.png', 'bird_1_sit.png')
             pipes = P.Pipe('pipe.png')
-            text("PRESS SPACE TO START", 40, 5, screen, screen_w, screen_h)
-            bird.set_x(screen_w)
-            bird.set_y(screen_h)
+            text("PRESS SPACE TO START", 40, 5, screen)
 
         else:
             pipes.generate(screen_w, screen_h)
             pipes.display_collision(screen, bird)
 
-            frames = bird.movement(bird_flapped, jump_count, screen_h, frames)
+            frames = bird.movement(bird_flapped, screen_h, frames)
 
             pipes.movement(bird.land)
 
             if bird.land or pipes.collision:
-                text("GAME OVER", 60, 3, screen, screen_w, screen_h)
+                text("GAME OVER", 60, 3, screen)
 
             if bird.land:
-                text("PRESS R TO RESTART", 30, 2, screen, screen_w, screen_h)
+                text("PRESS R TO RESTART", 30, 2, screen)
 
             score = get_score(score, screen_w, bird, pipes)
 
         screen.blit(bird.active, (bird.x, bird.y))
-        jump_count = 0
         pygame.display.flip()
         clock.tick(60)
         frames += 1
+
+    pygame.quit()
